@@ -33,6 +33,11 @@ class AlienInvasion:
             self.bullets.update()
             self._update_screen()
 
+            # 删除消失的子弹
+            for bullet in self.bullets.copy():
+                if bullet.rect.bottom <= 0:
+                    self.bullets.remove(bullet)
+
     def _check_events(self):
         '''响应按键和鼠标事件'''
         for event in pygame.event.get():
