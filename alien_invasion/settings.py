@@ -20,3 +20,6 @@ class Settings:
         self.bullet_height = 15
         self.bullet_color = (60, 60, 60)
         self.bullets_allowed = 3         #使屏幕上最多只能出现3颗子弹
+
+        # 外星人设置
+        self.alien_speed = 1.0
