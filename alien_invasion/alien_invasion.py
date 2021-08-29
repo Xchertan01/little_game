@@ -93,12 +93,15 @@ class AlienInvasion:
 
         # 创建第一行外星人
         for alien_number in range(number_aliens_x):
-            # 创建一个外星人并将其加入当前行
-            alien = Alien(self)
-            alien.x = alien_width + 2 * alien_width * alien_number
-            alien.rect.x = alien.x
-            self.aliens.add(alien)
+            self._create_alien(alien_number)
 
+    def _create_alien(self, alien_number):
+        '''创建一个外星人并将其放在当前行'''
+        alien = Alien(self)
+        alien_width = alien.rect.width
+        alien.x = alien_width + 2 * alien_width * alien_number
+        alien.rect.x = alien.x
+        self.aliens.add(alien)
 
     def _update_screen(self):
         '''更新屏幕上的图像，并切换到新屏幕'''
