@@ -158,20 +158,22 @@ class AlienInvasion:
 
     def _ship_hit(self):
         '''响应飞船被外星人撞到'''
+        if self.stats.ships_left > 0:
+            # 将 ship_left 减1
+            self.stats.ships_left -= 1
+            # 清空余下的外星人和子弹
+            self.aliens.empty()
+            self.bullets.empty()
 
-        # 将 ship_left 减1
-        self.stats.ships_left -=1
+            # 创建一群新的外星人，并将飞船放到屏幕底端的中央
+            self._create_fleet()
+            self.ship.center_ship()
 
-        # 清空余下的外星人和子弹
-        self.aliens.empty()
-        self.bullets.empty()
+            # 暂停
+            sleep(0.5)
 
-        # 创建一群新的外星人，并将飞船放到屏幕底端的中央
-        self._create_fleet()
-        self.ship.center_ship()
-
-        # 暂停
-        sleep(0.5)
+        else:
+            self.stats.game_active = False
 
     def _check_aliens_bottom(self):
         '''检查是否有外星人到达了屏幕底端'''
