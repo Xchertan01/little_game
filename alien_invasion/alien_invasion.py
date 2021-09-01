@@ -76,8 +76,8 @@ class AlienInvasion:
 
             # 重置游戏统计信息
             self.stats.reset_stats()
-
             self.stats.game_active = True
+            self.sb.prep_score()
 
             # 清空余下的外星人和子弹
             self.aliens.empty()
