@@ -8,6 +8,7 @@ import pygame
 
 from settings import Settings
 from game_stats import Gamestats
+from scoreboard import Scoreboard
 from button import Button
 from ship import Ship
 from bullet import Bullet
@@ -28,7 +29,9 @@ class AlienInvasion:
         pygame.display.set_caption("Alien Invasion")
 
         # 创建一个用于存储游戏统计信息的实例
+        # 并创建记分牌
         self.stats = Gamestats(self)
+        self.sb = Scoreboard(self)
 
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
@@ -50,8 +53,6 @@ class AlienInvasion:
                 self._update_aliens()
 
             self._update_screen()
-
-
 
     def _check_events(self):
         '''响应按键和鼠标事件'''
@@ -171,7 +172,6 @@ class AlienInvasion:
             for alien_number in range(number_aliens_x):
                 self._create_alien(alien_number, row_number)
 
-
     def _create_alien(self, alien_number, row_number):
         '''创建一个外星人并将其放在当前行'''
         alien = Alien(self)
@@ -229,6 +229,9 @@ class AlienInvasion:
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()         # 疑似bug
         self.aliens.draw(self.screen)
+
+        # 显示得分
+        self.sb.show_score()
 
         # 如果游戏处于非活动状态，就绘制 Play按钮
         if not self.stats.game_active:
