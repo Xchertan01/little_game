@@ -138,6 +138,7 @@ class AlienInvasion:
             for aliens in collision.values():
                 self.stats.score+= self.settings.alien_points * len(aliens)
                 self.sb.prep_score()
+                self.sb.check_high_score()
 
         if not self.aliens:
             # 删除现有的子弹并新建一群外星人
